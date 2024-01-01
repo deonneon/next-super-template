@@ -31,11 +31,8 @@ const generateProblems = async (topic, numberOfProblems) => {
       response_format: { type: "json_object" },
       //max_tokens: 150, // Adjust as needed
     });
-    console.log(response.choices[0])
-    const generatedProblemsSet = response.choices[0].message.content;
-    console.log(generatedProblemsSet)
-    const problemsArray = JSON.parse(generatedProblemsSet).problems; // Extract the problems array
-    console.log(problemsArray)
+
+    const problemsArray = JSON.parse(response.choices[0].message.content).problems; // Extract the problems array
     return problemsArray;
   } catch (error) {
     console.error('Error generating problems:', error);

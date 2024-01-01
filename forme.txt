@@ -1,0 +1,48 @@
+todo notes
+
+remedy better solution for eslint rules in netlify functions
+
+Either disable es rules for specific folder like below
+disable an ESLint rule for an entire folder by creating a specific .eslintrc file within that folder. ESLint supports multiple configuration files, and the configuration in a directory will apply to files within that directory and its subdirectories. Here's how to do it:
+
+Navigate to the folder where you want to disable the rule.
+Create a new ESLint configuration file (.eslintrc, .eslintrc.js, .eslintrc.json, etc.) in that folder.
+In this new configuration file, extend your main configuration and disable the specific rule.
+
+{
+  "extends": "../.eslintrc.json",
+  "rules": {
+    "import/no-anonymous-default-export": "off"
+  }
+}
+
+
+
+or
+
+download 
+npm i @netlify/eslint-config-node
+https://www.npmjs.com/package/@netlify/eslint-config-node
+
+
+
+
+Google trend says vercel is gaining popularity over netlify
+should i switch to vercel? It seems to have better openai integration
+
+netlify allows me to put ads....
+https://trends.google.com/trends/explore?date=today%205-y&geo=US&q=vercel,netlify&hl=en
+
+
+
+should i do api calls as serve-side fetching
+
+For client-side data fetching, you can use React's useEffect hook to call the function when the component mounts.
+
+Server-Side Fetching: (Using getServerSideProps in pages/index.js)
+
+Alternatively, if you want to fetch the data on the server-side and send it as a prop to your page, use getServerSideProps:
+
+
+##########
+Not really sure if my API return should be json or plain english. 
