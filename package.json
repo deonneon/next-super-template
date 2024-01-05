@@ -12,7 +12,6 @@
     "@netlify/edge-functions": "^2.2.0",
     "@netlify/functions": "^2.4.1",
     "cors": "^2.8.5",
-    "express": "^4.18.2",
     "mysql": "^2.18.1",
     "next": "14.0.4",
     "openai": "^4.24.1",
