@@ -7,6 +7,6 @@ headers = []
 [functions."*"]
 
 [build]
-command = "npm run build"
-publish = "build"
-functions = "netlify/functions"
+  command = "npm run build"
+  publish = ".next"
+  functions = "netlify/functions"
