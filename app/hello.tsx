@@ -1,15 +1,15 @@
-'use client'
+"use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    fetch('/hello')
-      .then(response => response.text())
-      .then(data => setMessage(data))
-      .catch(error => console.error('Error:', error));
+    fetch("/hello")
+      .then((response) => response.text())
+      .then((data) => setMessage(data))
+      .catch((error) => console.error("Error:", error));
   }, []);
 
   return (
@@ -19,5 +19,5 @@ export default function Home() {
         <p>{message}</p>
       </div>
     </main>
-  )
+  );
 }

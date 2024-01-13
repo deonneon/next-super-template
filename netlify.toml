@@ -10,3 +10,4 @@ headers = []
   command = "npm run build"
   publish = ".next"
   functions = "netlify/functions"
+  functions = "netlify/edge-functions"

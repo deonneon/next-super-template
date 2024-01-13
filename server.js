@@ -1,8 +1,8 @@
-const express = require('express');
-const cors = require('cors');
-const openai = require('openai');
+const express = require("express");
+const cors = require("cors");
+const openai = require("openai");
 
-require('dotenv').config();
+require("dotenv").config();
 
 const app = express();
 const port = 3001;
@@ -19,36 +19,39 @@ const generateProblems = async (topic, numberOfProblems) => {
     const response = await openaiClient.chat.completions.create({
       messages: [
         {
-          "role": "system",
-          "content": "You are a problem generation assistant designed to output structured JSON in the format:\n[{ \"problem\": \"get problem\", \"answer\": \"get answer\" }]"
+          role: "system",
+          content:
+            'You are a problem generation assistant designed to output structured JSON in the format:\n[{ "problem": "get problem", "answer": "get answer" }]',
         },
         {
-          role: 'user',
+          role: "user",
           content: `Generate ${numberOfProblems} problems on the topic of ${topic}.`,
-        },        
+        },
       ],
-      model: 'gpt-3.5-turbo-1106', // Use the appropriate GPT-3 model
+      model: "gpt-3.5-turbo-1106", // Use the appropriate GPT-3 model
       response_format: { type: "json_object" },
       //max_tokens: 150, // Adjust as needed
     });
 
-    const problemsArray = JSON.parse(response.choices[0].message.content).problems; // Extract the problems array
+    const problemsArray = JSON.parse(
+      response.choices[0].message.content,
+    ).problems; // Extract the problems array
     return problemsArray;
   } catch (error) {
-    console.error('Error generating problems:', error);
+    console.error("Error generating problems:", error);
     throw error;
   }
 };
 
 // Add a new endpoint for generating problems
-app.post('/generate-problems', async (req, res) => {
+app.post("/generate-problems", async (req, res) => {
   const { topic, numberOfProblems } = req.body;
 
   try {
     const problems = await generateProblems(topic, numberOfProblems);
-    res.status(200).json({ problems }); ; // Return the response in the expected format
+    res.status(200).json({ problems }); // Return the response in the expected format
   } catch (error) {
-    res.status(500).json({ error: 'Error generating problems' });
+    res.status(500).json({ error: "Error generating problems" });
   }
 });
 

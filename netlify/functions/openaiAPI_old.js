@@ -1,4 +1,4 @@
-const openai = require('openai');
+const openai = require("openai");
 
 // Initialize OpenAI client
 const openaiClient = new openai({ apiKey: process.env.OPENAI_API_KEY });
@@ -9,31 +9,34 @@ const generateProblems = async (topic, numberOfProblems) => {
     const response = await openaiClient.chat.completions.create({
       messages: [
         {
-          "role": "system",
-          "content": "You are a problem generation assistant designed to output structured JSON in the format:\n[{ \"problem\": \"get problem\", \"answer\": \"get answer\" }]"
+          role: "system",
+          content:
+            'You are a problem generation assistant designed to output structured JSON in the format:\n[{ "problem": "get problem", "answer": "get answer" }]',
         },
         {
-          role: 'user',
+          role: "user",
           content: `Generate ${numberOfProblems} problems on the topic of ${topic}.`,
-        },        
+        },
       ],
-      model: 'gpt-3.5-turbo-1106', // Use the appropriate GPT-3 model
-      response_format: { type: "json_object" }, 
+      model: "gpt-3.5-turbo-1106", // Use the appropriate GPT-3 model
+      response_format: { type: "json_object" },
       //max_tokens: 150, // Adjust as needed
     });
 
-    const problemsArray = JSON.parse(response.choices[0].message.content).problems; // Extract the problems array
+    const problemsArray = JSON.parse(
+      response.choices[0].message.content,
+    ).problems; // Extract the problems array
     return problemsArray;
   } catch (error) {
-    console.error('Error generating problems:', error);
+    console.error("Error generating problems:", error);
     throw error;
   }
 };
 
 // Netlify Function handler
 exports.handler = async (event, context) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method Not Allowed" };
   }
 
   try {
@@ -44,6 +47,9 @@ exports.handler = async (event, context) => {
       body: JSON.stringify({ problems }),
     };
   } catch (error) {
-    return { statusCode: 500, body: JSON.stringify({ error: 'Internal Server Error' }) };
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "Internal Server Error" }),
+    };
   }
 };
