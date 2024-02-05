@@ -16,21 +16,26 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <section>
-        <div>
-          <h1>Api Test #1</h1>
-          <Hello />
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <nav className="p-3">
+        <h1 className="text-xl font-medium">TEACHER WORKSHEET GENERATOR</h1>
+      </nav>
+      <div className="flex w-full flex-1 flex-row">
+        <div className="min-h-5/6 w-2/3 bg-gray-400">Test</div>
+        <div className="min-h-5/6 flex w-1/3 flex-col">
+          <div className="min-h-14 bg-teal-200"></div>
+          <div className=" flex flex-1 flex-col items-center">
+            <h1 className="flex p-12 pt-12 text-xl font-light">
+              Start with a topic
+            </h1>
+            <form>
+              <input type="text" id="fname" name="fname"></input>
+            </form>
+          </div>
+          <div className="min-h-24 bg-teal-200"></div>
         </div>
-      </section>
-
-      <section>
-        <AiComponent />
-      </section>
-
-      <section>Dummy block</section>
-
-      <section>Dummy block</section>
+      </div>
+      <section></section>
     </main>
   );
 }
